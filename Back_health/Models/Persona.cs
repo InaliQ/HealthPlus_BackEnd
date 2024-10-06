@@ -13,7 +13,7 @@ public partial class Persona
 
     public string? SegundoApellido { get; set; }
 
-    public DateOnly? FechaNacimiento { get; set; }
+    public string? FechaNacimiento { get; set; }
 
     public string? Telefono { get; set; }
 

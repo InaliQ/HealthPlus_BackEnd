@@ -19,9 +19,9 @@ public partial class Paciente
 
     public int IdPersona { get; set; }
 
-    public int IdAlerta { get; set; }
+    public int? IdAlerta { get; set; }
 
-    public int IdRecordatorio { get; set; }
+    public int? IdRecordatorio { get; set; }
 
     public int IdUsuario { get; set; }
 
