@@ -20,5 +20,6 @@
         public string? Contrasenia { get; set; }
         public int IdPaciente { get; set; }
         public int IdPadecimiento { get; set; }
+        public List<int> IdPadecimientos { get; set; }
     }
 }
