@@ -18,6 +18,7 @@ public partial class Recordatorio
     public bool? Estatus { get; set; }
 
     public int IdEnfermero { get; set; }
+    public int? IdPaciente {  get; set; }
 
     public virtual Enfermero IdEnfermeroNavigation { get; set; } = null!;
 
