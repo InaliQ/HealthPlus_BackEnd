@@ -16,6 +16,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 /////////////////             CONEXIÓN             ///////////
+//var connectionString = builder.Configuration.GetConnectionString("DefaultConnection"); --- azurre
 var connectionString = builder.Configuration.GetConnectionString("cadenaSQL");
 
 // AGREGAMOS LA CONFIGURACIÓN PARA SQL
@@ -36,9 +37,12 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    //app.UseSwagger();
+    //app.UseSwaggerUI();
 }
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 // ACTIVAMOS LA POLÍTICA CORS
 app.UseCors("NuevaPolitica");

@@ -44,7 +44,7 @@ public partial class HealtPlusContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Server=HIROMI; Initial Catalog=healt_plus; user id=sa; password=root;TrustServerCertificate=true");
-
+    //=> optionsBuilder.UseSqlServer("Server=tcp:healt-web.database.windows.net,1433;Initial Catalog=Health;Persist Security Info=False;User ID=health;Password=$AltF4UliMar123#;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Alertum>(entity =>
@@ -123,32 +123,27 @@ public partial class HealtPlusContext : DbContext
 
             entity.Property(e => e.IdEnfermeroTurno).HasColumnName("idEnfermero_turno");
             entity.Property(e => e.IdEnfermero).HasColumnName("idEnfermero");
-            entity.Property(e => e.IdTurno).HasColumnName("idTurno");
+            entity.Property(e => e.Turno)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("turno");
 
             entity.HasOne(d => d.IdEnfermeroNavigation).WithMany(p => p.EnfermeroTurnos)
                 .HasForeignKey(d => d.IdEnfermero)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__enfermero__idTur__4F7CD00D");
-
-            entity.HasOne(d => d.IdTurnoNavigation).WithMany(p => p.EnfermeroTurnos)
-                .HasForeignKey(d => d.IdTurno)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__enfermero__idTur__5070F446");
         });
 
         modelBuilder.Entity<HistorialTurno>(entity =>
         {
-            entity.HasKey(e => e.IdTurno).HasName("PK__historia__AA068B012147D026");
+            entity.HasKey(e => e.IdHistorialTurno).HasName("PK__historia__AA068B012147D026");
 
             entity.ToTable("historial_turno");
 
-            entity.Property(e => e.IdTurno).HasColumnName("idTurno");
+            entity.Property(e => e.IdHistorialTurno).HasColumnName("idHistorialTurno");
             entity.Property(e => e.IdEnfermero).HasColumnName("idEnfermero");
+            entity.Property(e => e.IdEnfermeroTurno).HasColumnName("idEnfermero_turno");
             entity.Property(e => e.IdPaciente).HasColumnName("idPaciente");
-            entity.Property(e => e.Turno)
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("turno");
 
             entity.HasOne(d => d.IdEnfermeroNavigation).WithMany(p => p.HistorialTurnos)
                 .HasForeignKey(d => d.IdEnfermero)
@@ -214,7 +209,6 @@ public partial class HealtPlusContext : DbContext
 
             entity.HasOne(d => d.IdAlertaNavigation).WithMany(p => p.Pacientes)
                 .HasForeignKey(d => d.IdAlerta)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__paciente__idAler__46E78A0C");
 
             entity.HasOne(d => d.IdPersonaNavigation).WithMany(p => p.Pacientes)
@@ -224,7 +218,6 @@ public partial class HealtPlusContext : DbContext
 
             entity.HasOne(d => d.IdRecordatorioNavigation).WithMany(p => p.Pacientes)
                 .HasForeignKey(d => d.IdRecordatorio)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__paciente__idReco__47DBAE45");
 
             entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Pacientes)
@@ -286,7 +279,10 @@ public partial class HealtPlusContext : DbContext
                 .HasMaxLength(200)
                 .IsUnicode(false)
                 .HasColumnName("colonia");
-            entity.Property(e => e.FechaNacimiento).HasColumnName("fecha_nacimiento");
+            entity.Property(e => e.FechaNacimiento)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("fecha_nacimiento");
             entity.Property(e => e.Nombre)
                 .HasMaxLength(50)
                 .IsUnicode(false)

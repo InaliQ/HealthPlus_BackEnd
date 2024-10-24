@@ -15,6 +15,7 @@
         public string? Contrasenia { get; set; }
         public string? Titulo { get; set; }
         public string? NumEnfermero { get; set; }
-      
+        public string? Turno { get; set; }
+
     }
 }

@@ -57,23 +57,22 @@ namespace Back_health.Controllers.HeathAdmin.EnfermerosController
         [Route("ListarEnfermeros")]
         public async Task<IActionResult> ListarEnfermeros()
         {
-            var enfermeros = await (from en in _baseDatos.Enfermeros
-                                    join pe in _baseDatos.Personas on en.IdPersona equals pe.IdPersona
-                                    select new
-                                    {
-                                        idEnfermero = en.IdEnfermero,
-                                        nombre = pe.Nombre,
-                                        primerApellido = pe.PrimerApellido,
-                                        segundoApellido = pe.SegundoApellido,
-                                        telefono = pe.Telefono,
-                                        fechaNacimiento = pe.FechaNacimiento,
-                                        calle = pe.Calle,
-                                        numero = pe.Numero,
-                                        colonia = pe.Colonia,
-                                        codigoPostal = pe.CodigoPostal,
-                                        titulo = en.Titulo,
-                                        numEnfermero = en.NumEnfermero
-                                    }).ToListAsync(); 
+            var enfermeros = from en in _baseDatos.Enfermeros
+                                   join pe in _baseDatos.Personas on en.IdPersona equals pe.IdPersona
+                                   select new {
+                                       idEnfermero = en.IdEnfermero,
+                                       nombre = pe.Nombre,
+                                       primerApellido = pe.PrimerApellido,
+                                       segundoApellido = pe.SegundoApellido,
+                                       telefono = pe.Telefono,
+                                       fechaNacimiento = pe.FechaNacimiento,
+                                       calle = pe.Calle,
+                                       numero = pe.Numero,
+                                       colonia = pe.Colonia,
+                                       codigoPostal = pe.CodigoPostal,
+                                       titulo = en.Titulo,
+                                       numEnfermero = en.NumEnfermero
+                                   };
 
             return Ok(enfermeros); 
         }
@@ -125,6 +124,15 @@ namespace Back_health.Controllers.HeathAdmin.EnfermerosController
                     _baseDatos.Enfermeros.Add(enfermero);
                     await _baseDatos.SaveChangesAsync();
 
+                    var enfermero_turno = new EnfermeroTurno
+                    {
+                        IdEnfermero = enfermero.IdEnfermero,
+                        Turno = request.Turno
+                    };
+
+                    _baseDatos.EnfermeroTurnos.Add(enfermero_turno);
+                    await _baseDatos.SaveChangesAsync();
+
                     transaction.Commit();
                     return Ok(enfermero);
                 }
@@ -141,6 +149,63 @@ namespace Back_health.Controllers.HeathAdmin.EnfermerosController
 
             }
         }
+
+        // ASIGNAR PACIENTES A ENFERMEROS
+        [HttpPost]
+        [Route("AsignarPaciente")]
+        public async Task<IActionResult> AsignarPaciente([FromBody] EnfermeroPacienteRequest request)
+        {
+            if (request == null)
+            {
+                return BadRequest("Datos inválidos");
+            }
+
+            using (var transaction = await _baseDatos.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    // Validar que los datos no sean nulos
+                    if (request.IdEnfermero == 0 || request.IdPaciente == 0 || request.IdEnfermeroTurno == 0)
+                    {
+                        return BadRequest("Identificadores inválidos");
+                    }
+
+                    var enfermeroExiste = await _baseDatos.Enfermeros.AnyAsync(e => e.IdEnfermero == request.IdEnfermero);
+                    var pacienteExiste = await _baseDatos.Pacientes.AnyAsync(p => p.IdPaciente == request.IdPaciente);
+                    var turnoExiste = await _baseDatos.EnfermeroTurnos.AnyAsync(et => et.IdEnfermeroTurno == request.IdEnfermeroTurno);
+
+                    if (!enfermeroExiste || !pacienteExiste || !turnoExiste)
+                    {
+                        return NotFound("Enfermero, paciente o turno no encontrado");
+                    }
+
+                    var enfermeroPaciente = new HistorialTurno
+                    {
+                        IdEnfermero = request.IdEnfermero,
+                        IdPaciente = request.IdPaciente,
+                        IdEnfermeroTurno = request.IdEnfermeroTurno
+                    };
+
+                    _baseDatos.HistorialTurnos.Add(enfermeroPaciente);
+                    await _baseDatos.SaveChangesAsync();
+
+                    await transaction.CommitAsync();
+                    return Ok("Paciente asignado correctamente");
+                }
+                catch (Exception ex)
+                {
+                    await transaction.RollbackAsync();
+                    Console.WriteLine($"Error: {ex.Message}");
+                    if (ex.InnerException != null)
+                    {
+                        Console.WriteLine($"Inner Exception: {ex.InnerException.Message}");
+                    }
+                    return StatusCode(500, $"Error interno del servidor: {ex.Message}");
+                }
+            }
+        }
+
+
 
         // PUT MODIFICAR ENFERMERO
         [HttpPut]
@@ -202,6 +267,44 @@ namespace Back_health.Controllers.HeathAdmin.EnfermerosController
                 }
             }
         }
+
+        //METODO GET BUSCAR ENFERMERO POR NOMBRE
+        [HttpGet]
+        [Route("MisPacientes")]
+        public async Task<IActionResult> MisPacientes(int id)
+        {
+            if (id == 0)
+            {
+                return BadRequest("ID de enfermero no proporcionado.");
+            }
+
+            var pacientes = from hi in _baseDatos.HistorialTurnos
+                                   join et in _baseDatos.EnfermeroTurnos on hi.IdEnfermero equals et.IdEnfermero
+                                   join pa in _baseDatos.Pacientes on hi.IdPaciente equals pa.IdPaciente
+                                   join pe in _baseDatos.Personas on pa.IdPersona equals pe.IdPersona
+                                   where et.IdEnfermero == id
+                                   select new
+                                   {
+                                       IdHistorialTurno = hi.IdHistorialTurno,
+                                       IdEnfermero = hi.IdEnfermero,
+                                       IdPaciente = hi.IdPaciente,
+                                       IdEnfermeroTurno = hi.IdEnfermeroTurno,
+                                       EnfermeroId = et.IdEnfermero,
+                                       Nombre = pe.Nombre,
+                                       PrimerApellido = pe.PrimerApellido,
+                                       SegundoApellido = pe.SegundoApellido
+                                   };
+
+            if (!pacientes.Any())
+            {
+                return NotFound("No se encontraron pacientes asignados.");
+            }
+
+            return Ok(pacientes);
+        }
+
+
+
 
     }
 }

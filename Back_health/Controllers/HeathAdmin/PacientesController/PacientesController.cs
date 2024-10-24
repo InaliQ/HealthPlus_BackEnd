@@ -255,10 +255,7 @@ namespace Back_health.Controllers.HealthAdmin
                 return StatusCode(500, "Error interno del servidor.");
             }
         }
-
-        
        
-
         // PUT MODIFICAR ESTATUS PACIENTE
         [HttpPut]
         [Route("ModificarEstatusPaciente/{id:int}")]
@@ -296,6 +293,6 @@ namespace Back_health.Controllers.HealthAdmin
                 }
             }
         }
-    
+
     }
 }

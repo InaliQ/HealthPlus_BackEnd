@@ -9,9 +9,7 @@ public partial class EnfermeroTurno
 
     public int IdEnfermero { get; set; }
 
-    public int IdTurno { get; set; }
+    public string Turno { get; set; } = null!;
 
     public virtual Enfermero IdEnfermeroNavigation { get; set; } = null!;
-
-    public virtual HistorialTurno IdTurnoNavigation { get; set; } = null!;
 }

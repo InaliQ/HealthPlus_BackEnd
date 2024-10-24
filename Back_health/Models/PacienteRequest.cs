@@ -18,8 +18,6 @@
         public bool Estatus { get; set; }
         public string? Usuario1 { get; set; }
         public string? Contrasenia { get; set; }
-        public int IdPaciente { get; set; }
-        public int IdPadecimiento { get; set; }
         public List<int> IdPadecimientos { get; set; }
     }
 }

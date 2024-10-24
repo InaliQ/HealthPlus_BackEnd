@@ -33,6 +33,22 @@
   },
   {
     "ContainingType": "Back_health.Controllers.HeathAdmin.EnfermerosController.EnfermerosController",
+    "Method": "AsignarPaciente",
+    "RelativePath": "api/Enfermeros/AsignarPaciente",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Back_health.Models.EnfermeroPacienteRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Back_health.Controllers.HeathAdmin.EnfermerosController.EnfermerosController",
     "Method": "BuscarEPorNombre",
     "RelativePath": "api/Enfermeros/BuscarEPorNombre",
     "HttpMethod": "GET",
@@ -55,6 +71,22 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Back_health.Controllers.HeathAdmin.EnfermerosController.EnfermerosController",
+    "Method": "MisPacientes",
+    "RelativePath": "api/Enfermeros/MisPacientes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -161,6 +193,16 @@
     "ContainingType": "Back_health.Controllers.HealthAdmin.PacientesController",
     "Method": "PacientesXPadecimiento",
     "RelativePath": "api/Pacientes/PacientesXPadecimiento",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Back_health.Controllers.HeathAdmin.PadecimientosController.PadecimientosController",
+    "Method": "ListarPadecimientos",
+    "RelativePath": "api/Padecimientos/ListarPadecimientos",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
