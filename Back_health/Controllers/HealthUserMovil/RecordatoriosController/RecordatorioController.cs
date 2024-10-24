@@ -1,5 +1,6 @@
 ﻿using Back_health.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Back_health.Controllers.HealthUserMovil.RecordatoriosController
 {
@@ -13,7 +14,7 @@ namespace Back_health.Controllers.HealthUserMovil.RecordatoriosController
         {
             _baseDatos = baseDatos;
         }
-        // PUT: Actualizar el estado de un recordatorio
+
         [HttpPut]
         [Route("CompletarRecordatorio/{idRecordatorio}")]
         public async Task<IActionResult> CompletarRecordatorio(int idRecordatorio)
@@ -25,7 +26,6 @@ namespace Back_health.Controllers.HealthUserMovil.RecordatoriosController
                 return NotFound("Recordatorio no encontrado.");
             }
 
-            // Actualizar la fecha_fin y el estatus
             recordatorio.FechaFin = DateTime.Now;
             recordatorio.Estatus = true;
 
@@ -33,5 +33,31 @@ namespace Back_health.Controllers.HealthUserMovil.RecordatoriosController
 
             return Ok("Recordatorio actualizado exitosamente.");
         }
+
+        [HttpGet("UltimaAlertaRecordatorio/{idPaciente}")]
+        public IActionResult GetUltimaAlertaYRecordatorio(int idPaciente)
+        {
+            var ultimaAlerta = _baseDatos.Alerta
+                .Where(a => a.IdPaciente == idPaciente)
+                .OrderByDescending(a => a.FechaHora)
+                .FirstOrDefault();
+
+            var ultimoRecordatorio = _baseDatos.Recordatorios
+                .Where(r => r.IdPaciente == idPaciente)
+                .OrderByDescending(r => r.FechaFin)
+                .FirstOrDefault();
+
+            if (ultimaAlerta == null && ultimoRecordatorio == null)
+            {
+                return NotFound(new { message = "No se encontraron datos para este paciente." });
+            }
+
+            return Ok(new
+            {
+                UltimaAlerta = ultimaAlerta,
+                UltimoRecordatorio = ultimoRecordatorio
+            });
+        }
     }
 }
+
