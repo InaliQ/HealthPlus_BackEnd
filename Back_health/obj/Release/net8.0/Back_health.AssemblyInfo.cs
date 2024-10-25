@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Back_health")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a224b622ddbc1d39e3c4a95616e33d15754b882d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ba9aa4d66d8ae5bf3646e89e1f8491530da9d15d")]
 [assembly: System.Reflection.AssemblyProductAttribute("Back_health")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Back_health")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
