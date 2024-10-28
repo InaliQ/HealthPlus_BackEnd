@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Back_health.Controllers.HealthUserMovil.RecordatoriosController
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class RecordatorioController : Controller
     {
         private readonly HealtPlusContext _baseDatos;
