@@ -2,6 +2,7 @@
 {
     public class EnfermeroRequest
     {
+        public int? IdEnfermero { get; set; }
         public string? Nombre { get; set; }
         public string? PrimerApellido { get; set; }
         public string? SegundoApellido { get; set; }
@@ -15,6 +16,7 @@
         public string? Contrasenia { get; set; }
         public string? Titulo { get; set; }
         public string? NumEnfermero { get; set; }
-      
+        public string? Turno { get; set; }
+
     }
 }

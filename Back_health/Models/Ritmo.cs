@@ -17,6 +17,8 @@ public partial class Ritmo
 
     public int IdPaciente { get; set; }
 
+    public DateTime? FechaRegistro { get; set; }
+
     public virtual Paciente IdPacienteNavigation { get; set; } = null!;
 
     public virtual Padecimiento IdPadecimientoNavigation { get; set; } = null!;

@@ -27,11 +27,11 @@ public partial class Paciente
 
     public virtual ICollection<HistorialTurno> HistorialTurnos { get; set; } = new List<HistorialTurno>();
 
-    public virtual Alertum IdAlertaNavigation { get; set; } = null!;
+    public virtual Alertum? IdAlertaNavigation { get; set; }
 
     public virtual Persona IdPersonaNavigation { get; set; } = null!;
 
-    public virtual Recordatorio IdRecordatorioNavigation { get; set; } = null!;
+    public virtual Recordatorio? IdRecordatorioNavigation { get; set; }
 
     public virtual Usuario IdUsuarioNavigation { get; set; } = null!;
 

@@ -16,6 +16,47 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Back_health.Controllers.HeathAdmin.DashboardsController.DashboardController",
+    "Method": "DashboardRitmo",
+    "RelativePath": "api/Dashboard/DashboardRitmo/{idPaciente}/{fecha}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idPaciente",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "fecha",
+        "Type": "System.DateTime",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Back_health.Controllers.HeathAdmin.DashboardsController.DashboardController",
+    "Method": "PacientesPorEdad",
+    "RelativePath": "api/Dashboard/PacientesPorEdad",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Back_health.Controllers.HeathAdmin.DashboardsController.DashboardController",
+    "Method": "PacientesXPadecimiento",
+    "RelativePath": "api/Dashboard/PacientesXPadecimiento",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Back_health.Controllers.HeathAdmin.EnfermerosController.EnfermerosController",
     "Method": "AgregarEnfermero",
     "RelativePath": "api/Enfermeros/AgregarEnfermero",
@@ -26,6 +67,38 @@
       {
         "Name": "request",
         "Type": "Back_health.Models.EnfermeroRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Back_health.Controllers.HeathAdmin.EnfermerosController.EnfermerosController",
+    "Method": "AsignarPaciente",
+    "RelativePath": "api/Enfermeros/AsignarPaciente",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Back_health.Models.EnfermeroPacienteRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Back_health.Controllers.HealthEnfermerosMovil.authController.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/enfermeros/Auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Back_health.Controllers.HealthEnfermerosMovil.authController.UsuarioLoginRequest",
         "IsRequired": true
       }
     ],
@@ -49,12 +122,44 @@
   },
   {
     "ContainingType": "Back_health.Controllers.HeathAdmin.EnfermerosController.EnfermerosController",
+    "Method": "CambiarTurnoEnfermero",
+    "RelativePath": "api/Enfermeros/CambiarTurnoEnfermero",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Back_health.Models.CambiarTurnoRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Back_health.Controllers.HeathAdmin.EnfermerosController.EnfermerosController",
     "Method": "ListarEnfermeros",
     "RelativePath": "api/Enfermeros/ListarEnfermeros",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Back_health.Controllers.HeathAdmin.EnfermerosController.EnfermerosController",
+    "Method": "MisPacientes",
+    "RelativePath": "api/Enfermeros/MisPacientes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -79,9 +184,51 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Back_health.Controllers.HeathAdmin.EnfermerosController.EnfermerosController",
+    "Method": "ObtenerTurnosEnfermero",
+    "RelativePath": "api/Enfermeros/ObtenerTurnosEnfermero",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idEnfermero",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Back_health.Controllers.HeathAdmin.CheckController.HealthController",
+    "Method": "HealthCheck",
+    "RelativePath": "api/Health/healthcheck",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Back_health.Controllers.HealthAdmin.PacientesController",
     "Method": "AgregarPaciente",
     "RelativePath": "api/Pacientes/AgregarPaciente",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Back_health.Models.PacienteRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Back_health.Controllers.HealthAdmin.PacientesController",
+    "Method": "AgregarPacienteConRitmo",
+    "RelativePath": "api/Pacientes/AgregarPacienteConRitmo",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -138,6 +285,22 @@
   },
   {
     "ContainingType": "Back_health.Controllers.HealthAdmin.PacientesController",
+    "Method": "ListarPacientesDisponibles",
+    "RelativePath": "api/Pacientes/ListarPacientesDisponibles/{idEnfermero}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idEnfermero",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Back_health.Controllers.HealthAdmin.PacientesController",
     "Method": "ModificarEstatusPaciente",
     "RelativePath": "api/Pacientes/ModificarEstatusPaciente/{id}",
     "HttpMethod": "PUT",
@@ -159,12 +322,229 @@
   },
   {
     "ContainingType": "Back_health.Controllers.HealthAdmin.PacientesController",
-    "Method": "PacientesXPadecimiento",
-    "RelativePath": "api/Pacientes/PacientesXPadecimiento",
+    "Method": "ModificarPaciente",
+    "RelativePath": "api/Pacientes/ModificarPaciente/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "Back_health.Models.PacienteRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Back_health.Controllers.HealthAdmin.PacientesController",
+    "Method": "yaAsignado",
+    "RelativePath": "api/Pacientes/yaAsignado/{idPaciente}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idPaciente",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Back_health.Controllers.HeathAdmin.PadecimientosController.PadecimientosController",
+    "Method": "AgregarPadecimientos",
+    "RelativePath": "api/Padecimientos/AgregarPadecimientos",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Back_health.Models.PadecimientoRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Back_health.Controllers.HeathAdmin.PadecimientosController.PadecimientosController",
+    "Method": "ListarPadecimientos",
+    "RelativePath": "api/Padecimientos/ListarPadecimientos",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Back_health.Controllers.HeathAdmin.PadecimientosController.PadecimientosController",
+    "Method": "ModificarPadecimiento",
+    "RelativePath": "api/Padecimientos/ModificarPadecimiento/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "Back_health.Models.PadecimientoRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Back_health.Controllers.HealthUserMovil.AuthController.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/users/Auth/loginUser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Back_health.Controllers.HealthUserMovil.AuthController.UsuarioUserRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Back_health.Controllers.HealthEnfermerosMovil.PacientesController.PacientesControllerMovil",
+    "Method": "ActualizarPaciente",
+    "RelativePath": "PacientesControllerMovil/ActualizarPaciente/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "Back_health.Models.PacienteRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Back_health.Controllers.HealthEnfermerosMovil.PacientesController.PacientesControllerMovil",
+    "Method": "AgregarPaciente",
+    "RelativePath": "PacientesControllerMovil/AgregarPaciente",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Back_health.Models.PacienteRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Back_health.Controllers.HealthEnfermerosMovil.PadecimietosController.PadeciminetosControllerMovil",
+    "Method": "AgregarRitmo",
+    "RelativePath": "PadeciminetosControllerMovil/AgregarRitmo",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idPaciente",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "request",
+        "Type": "Back_health.Models.RitmoRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Back_health.Controllers.HealthUserMovil.RecordatoriosController.RecordatorioController",
+    "Method": "CompletarRecordatorio",
+    "RelativePath": "Recordatorio/CompletarRecordatorio/{idRecordatorio}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idRecordatorio",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Back_health.Controllers.HealthUserMovil.RecordatoriosController.RecordatorioController",
+    "Method": "GetUltimaAlertaYRecordatorio",
+    "RelativePath": "Recordatorio/UltimaAlertaRecordatorio/{idPaciente}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idPaciente",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Back_health.Controllers.HealthEnfermerosMovil.UserController.UserControllerMovil",
+    "Method": "AgregarRecordatorio",
+    "RelativePath": "UserControllerMovil/AgregarRecordatorio",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idPaciente",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "request",
+        "Type": "Back_health.Models.RecordatorioRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Back_health.Controllers.HealthEnfermerosMovil.UserController.UserControllerMovil",
+    "Method": "EliminarRecordatorio",
+    "RelativePath": "UserControllerMovil/EliminarRecordatorio/{idRecordatorio}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idRecordatorio",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   }
 ]

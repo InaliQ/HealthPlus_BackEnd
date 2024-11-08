@@ -20,6 +20,14 @@
         public string? Contrasenia { get; set; }
         public int IdPaciente { get; set; }
         public int IdPadecimiento { get; set; }
+
+        public int? Max { get; set; }
+        public int? Min { get; set; }
+
+        public int? idPadecimientoRitmo { get; set; }
+
+
+
         public List<int> IdPadecimientos { get; set; }
     }
 }

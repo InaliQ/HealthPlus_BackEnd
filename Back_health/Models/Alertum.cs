@@ -10,6 +10,7 @@ public partial class Alertum
     public DateTime? FechaHora { get; set; }
 
     public string? Descripcion { get; set; }
+
     public int? IdPaciente { get; set; }
 
     public virtual ICollection<Paciente> Pacientes { get; set; } = new List<Paciente>();

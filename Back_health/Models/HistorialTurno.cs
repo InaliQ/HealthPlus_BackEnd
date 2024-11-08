@@ -5,15 +5,17 @@ namespace Back_health.Models;
 
 public partial class HistorialTurno
 {
-    public int IdTurno { get; set; }
+    public int IdHistorialTurno { get; set; }
 
     public int IdEnfermero { get; set; }
 
     public int IdPaciente { get; set; }
 
-    public string? Turno { get; set; }
+    public int IdEnfermeroTurno { get; set; }
 
-    public virtual ICollection<EnfermeroTurno> EnfermeroTurnos { get; set; } = new List<EnfermeroTurno>();
+    public string? FechaRegistro { get; set; }
+
+    public bool? Activo { get; set; }
 
     public virtual Enfermero IdEnfermeroNavigation { get; set; } = null!;
 
