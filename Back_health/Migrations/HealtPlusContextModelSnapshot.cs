@@ -41,6 +41,10 @@ namespace Back_health.Migrations
                         .HasColumnType("datetime")
                         .HasColumnName("fecha_hora");
 
+                    b.Property<int?>("IdPaciente")
+                        .HasColumnType("int")
+                        .HasColumnName("idPaciente");
+
                     b.HasKey("IdAlerta")
                         .HasName("PK__alerta__D099542711105225");
 
@@ -128,48 +132,63 @@ namespace Back_health.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdEnfermeroTurno"));
 
+                    b.Property<string>("FechaCambio")
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("fecha_cambio");
+
                     b.Property<int>("IdEnfermero")
                         .HasColumnType("int")
                         .HasColumnName("idEnfermero");
 
-                    b.Property<int>("IdTurno")
-                        .HasColumnType("int")
-                        .HasColumnName("idTurno");
+                    b.Property<string>("Turno")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("turno");
 
                     b.HasKey("IdEnfermeroTurno")
                         .HasName("PK__enfermer__FDBDD7AC042D8A29");
 
                     b.HasIndex("IdEnfermero");
 
-                    b.HasIndex("IdTurno");
-
                     b.ToTable("enfermero_turno", (string)null);
                 });
 
             modelBuilder.Entity("Back_health.Models.HistorialTurno", b =>
                 {
-                    b.Property<int>("IdTurno")
+                    b.Property<int>("IdHistorialTurno")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("idTurno");
+                        .HasColumnName("idHistorialTurno");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdTurno"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdHistorialTurno"));
+
+                    b.Property<bool?>("Activo")
+                        .HasColumnType("bit")
+                        .HasColumnName("activo");
+
+                    b.Property<string>("FechaRegistro")
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("fecha_registro");
 
                     b.Property<int>("IdEnfermero")
                         .HasColumnType("int")
                         .HasColumnName("idEnfermero");
 
+                    b.Property<int>("IdEnfermeroTurno")
+                        .HasColumnType("int")
+                        .HasColumnName("idEnfermero_turno");
+
                     b.Property<int>("IdPaciente")
                         .HasColumnType("int")
                         .HasColumnName("idPaciente");
 
-                    b.Property<string>("Turno")
-                        .HasMaxLength(20)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(20)")
-                        .HasColumnName("turno");
-
-                    b.HasKey("IdTurno")
+                    b.HasKey("IdHistorialTurno")
                         .HasName("PK__historia__AA068B012147D026");
 
                     b.HasIndex("IdEnfermero");
@@ -353,7 +372,9 @@ namespace Back_health.Migrations
                         .HasColumnName("colonia");
 
                     b.Property<string>("FechaNacimiento")
-                        .HasColumnType("nvarchar(max)")
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)")
                         .HasColumnName("fecha_nacimiento");
 
                     b.Property<string>("Nombre")
@@ -423,6 +444,10 @@ namespace Back_health.Migrations
                         .HasColumnType("int")
                         .HasColumnName("idEnfermero");
 
+                    b.Property<int?>("IdPaciente")
+                        .HasColumnType("int")
+                        .HasColumnName("idPaciente");
+
                     b.Property<string>("Medicamento")
                         .HasColumnType("text")
                         .HasColumnName("medicamento");
@@ -443,6 +468,12 @@ namespace Back_health.Migrations
                         .HasColumnName("id_ritmo");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdRitmo"));
+
+                    b.Property<DateTime?>("FechaRegistro")
+                        .HasMaxLength(10)
+                        .IsUnicode(false)
+                        .HasColumnType("datetime2")
+                        .HasColumnName("fecha_registro");
 
                     b.Property<int>("IdPaciente")
                         .HasColumnType("int")
@@ -549,15 +580,7 @@ namespace Back_health.Migrations
                         .IsRequired()
                         .HasConstraintName("FK__enfermero__idTur__4F7CD00D");
 
-                    b.HasOne("Back_health.Models.HistorialTurno", "IdTurnoNavigation")
-                        .WithMany("EnfermeroTurnos")
-                        .HasForeignKey("IdTurno")
-                        .IsRequired()
-                        .HasConstraintName("FK__enfermero__idTur__5070F446");
-
                     b.Navigation("IdEnfermeroNavigation");
-
-                    b.Navigation("IdTurnoNavigation");
                 });
 
             modelBuilder.Entity("Back_health.Models.HistorialTurno", b =>
@@ -684,11 +707,6 @@ namespace Back_health.Migrations
                     b.Navigation("HistorialTurnos");
 
                     b.Navigation("Recordatorios");
-                });
-
-            modelBuilder.Entity("Back_health.Models.HistorialTurno", b =>
-                {
-                    b.Navigation("EnfermeroTurnos");
                 });
 
             modelBuilder.Entity("Back_health.Models.Paciente", b =>

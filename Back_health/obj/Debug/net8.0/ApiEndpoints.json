@@ -405,74 +405,16 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Back_health.Controllers.HealthUserMovil.AuthController.AuthController",
-    "Method": "Login",
-    "RelativePath": "api/users/Auth/loginUser",
+    "ContainingType": "Back_health.Controllers.HealthEnfermerosMovil.RecordatorioController.RecordatorioController",
+    "Method": "AgregarRecordatorio",
+    "RelativePath": "api/Recordatorio/agregar",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "request",
-        "Type": "Back_health.Controllers.HealthUserMovil.AuthController.UsuarioUserRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Back_health.Controllers.HealthEnfermerosMovil.PacientesController.PacientesControllerMovil",
-    "Method": "ActualizarPaciente",
-    "RelativePath": "PacientesControllerMovil/ActualizarPaciente/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "request",
-        "Type": "Back_health.Models.PacienteRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Back_health.Controllers.HealthEnfermerosMovil.PacientesController.PacientesControllerMovil",
-    "Method": "AgregarPaciente",
-    "RelativePath": "PacientesControllerMovil/AgregarPaciente",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "request",
-        "Type": "Back_health.Models.PacienteRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Back_health.Controllers.HealthEnfermerosMovil.PadecimietosController.PadeciminetosControllerMovil",
-    "Method": "AgregarRitmo",
-    "RelativePath": "PadeciminetosControllerMovil/AgregarRitmo",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "idPaciente",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "request",
-        "Type": "Back_health.Models.RitmoRequest",
+        "Type": "Back_health.Models.RecordatorioRequest",
         "IsRequired": true
       }
     ],
@@ -481,7 +423,7 @@
   {
     "ContainingType": "Back_health.Controllers.HealthUserMovil.RecordatoriosController.RecordatorioController",
     "Method": "CompletarRecordatorio",
-    "RelativePath": "Recordatorio/CompletarRecordatorio/{idRecordatorio}",
+    "RelativePath": "api/Recordatorio/CompletarRecordatorio/{idRecordatorio}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -495,9 +437,25 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Back_health.Controllers.HealthEnfermerosMovil.RecordatorioController.RecordatorioController",
+    "Method": "EliminarRecordatorio",
+    "RelativePath": "api/Recordatorio/EliminarRecordatorio/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Back_health.Controllers.HealthUserMovil.RecordatoriosController.RecordatorioController",
     "Method": "GetUltimaAlertaYRecordatorio",
-    "RelativePath": "Recordatorio/UltimaAlertaRecordatorio/{idPaciente}",
+    "RelativePath": "api/Recordatorio/UltimaAlertaRecordatorio/{idPaciente}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -511,37 +469,80 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Back_health.Controllers.HealthEnfermerosMovil.UserController.UserControllerMovil",
-    "Method": "AgregarRecordatorio",
-    "RelativePath": "UserControllerMovil/AgregarRecordatorio",
-    "HttpMethod": "POST",
+    "ContainingType": "Back_health.Controllers.HealthUserMovil.RitmoController.RitmoController",
+    "Method": "EliminarRitmo",
+    "RelativePath": "api/Ritmo/EliminarRitmo/{id}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "idPaciente",
+        "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "request",
-        "Type": "Back_health.Models.RecordatorioRequest",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Back_health.Controllers.HealthEnfermerosMovil.UserController.UserControllerMovil",
-    "Method": "EliminarRecordatorio",
-    "RelativePath": "UserControllerMovil/EliminarRecordatorio/{idRecordatorio}",
-    "HttpMethod": "DELETE",
+    "ContainingType": "Back_health.Controllers.HealthUserMovil.RitmoController.RitmoController",
+    "Method": "GuardarMedicion",
+    "RelativePath": "api/Ritmo/guardar",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "idRecordatorio",
+        "Name": "request",
+        "Type": "Back_health.Models.RitmoRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Back_health.Controllers.HealthUserMovil.RitmoController.RitmoController",
+    "Method": "ObtenerMaxMinRitmo",
+    "RelativePath": "api/Ritmo/ObtenerMaxMinRitmo/{idPaciente}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idPaciente",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Back_health.Controllers.HealthUserMovil.RitmoController.RitmoController",
+    "Method": "ObtenerRitmos",
+    "RelativePath": "api/Ritmo/ObtenerRitmos/{idPaciente}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idPaciente",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Back_health.Controllers.HealthUserMovil.AuthController.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/users/Auth/loginUser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Back_health.Controllers.HealthUserMovil.AuthController.UsuarioUserRequest",
         "IsRequired": true
       }
     ],

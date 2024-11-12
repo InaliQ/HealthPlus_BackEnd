@@ -4556,19 +4556,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\maria\\.nuget\\packages\\": {}
+    "C:\\Users\\herna\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Health +\\HealthPlus_BackEnd\\Back_health\\Back_health.csproj",
+      "projectUniqueName": "C:\\Users\\herna\\Documents\\ProyectoFinal\\HealthPlus_BackEnd\\Back_health\\Back_health.csproj",
       "projectName": "Back_health",
-      "projectPath": "D:\\Health +\\HealthPlus_BackEnd\\Back_health\\Back_health.csproj",
-      "packagesPath": "C:\\Users\\maria\\.nuget\\packages\\",
-      "outputPath": "D:\\Health +\\HealthPlus_BackEnd\\Back_health\\obj\\",
+      "projectPath": "C:\\Users\\herna\\Documents\\ProyectoFinal\\HealthPlus_BackEnd\\Back_health\\Back_health.csproj",
+      "packagesPath": "C:\\Users\\herna\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\herna\\Documents\\ProyectoFinal\\HealthPlus_BackEnd\\Back_health\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\maria\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\herna\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
