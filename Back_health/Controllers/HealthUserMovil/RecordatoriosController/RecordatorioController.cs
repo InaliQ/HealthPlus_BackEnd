@@ -43,9 +43,17 @@ namespace Back_health.Controllers.HealthUserMovil.RecordatoriosController
                 .FirstOrDefault();
 
             var ultimoRecordatorio = _baseDatos.Recordatorios
-                .Where(r => r.IdPaciente == idPaciente)
+                .Where(r => r.IdPaciente == idPaciente && r.Estatus == false)
                 .OrderByDescending(r => r.FechaFin)
                 .FirstOrDefault();
+
+            if (ultimoRecordatorio == null)
+            {
+                ultimoRecordatorio = _baseDatos.Recordatorios
+                    .Where(r => r.IdPaciente == idPaciente && r.Estatus == true)
+                    .OrderByDescending(r => r.FechaFin)
+                    .FirstOrDefault();
+            }
 
             if (ultimaAlerta == null && ultimoRecordatorio == null)
             {
