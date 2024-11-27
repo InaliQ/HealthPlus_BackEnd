@@ -1,5 +1,21 @@
 [
   {
+    "ContainingType": "Back_health.Controllers.HealthUserMovil.AlertaController.AlertaController",
+    "Method": "CrearAlerta",
+    "RelativePath": "api/Alerta/agregar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "alertaRequest",
+        "Type": "Back_health.Controllers.HealthUserMovil.AlertaController.AlertaRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Back_health.Controllers.HeathAdmin.AuthController.AuthController",
     "Method": "Login",
     "RelativePath": "api/Auth/login",
@@ -446,6 +462,22 @@
     "Parameters": [
       {
         "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Back_health.Controllers.HealthUserMovil.RecordatoriosController.RecordatorioController",
+    "Method": "GetTodosRecordatorios",
+    "RelativePath": "api/Recordatorio/TodosRecordatorios/{idPaciente}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idPaciente",
         "Type": "System.Int32",
         "IsRequired": true
       }

@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\HealthUserMovil\RitmoCardiacoController\**" />
+    <Content Remove="Controllers\HealthUserMovil\RitmoCardiacoController\**" />
+    <EmbeddedResource Remove="Controllers\HealthUserMovil\RitmoCardiacoController\**" />
+    <None Remove="Controllers\HealthUserMovil\RitmoCardiacoController\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
       <PrivateAssets>all</PrivateAssets>
@@ -19,11 +26,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\HealthUserMovil\AlertaController\" />
-    <Folder Include="Controllers\HealthUserMovil\RitmoCardiacoController\" />
   </ItemGroup>
 
 </Project>

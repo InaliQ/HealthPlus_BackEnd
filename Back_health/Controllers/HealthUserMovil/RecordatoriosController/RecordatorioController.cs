@@ -66,6 +66,22 @@ namespace Back_health.Controllers.HealthUserMovil.RecordatoriosController
                 UltimoRecordatorio = ultimoRecordatorio
             });
         }
+
+        // Nueva petición GET para obtener todos los recordatorios del paciente
+        [HttpGet("TodosRecordatorios/{idPaciente}")]
+        public IActionResult GetTodosRecordatorios(int idPaciente)
+        {
+            var recordatorios = _baseDatos.Recordatorios
+                .Where(r => r.IdPaciente == idPaciente)
+                .OrderBy(r => r.FechaInicio)
+                .ToList();
+
+            if (recordatorios == null || !recordatorios.Any())
+            {
+                return NotFound(new { message = "No se encontraron recordatorios para este paciente." });
+            }
+
+            return Ok(recordatorios);
+        }
     }
 }
-
