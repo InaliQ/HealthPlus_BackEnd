@@ -25,8 +25,13 @@ namespace Back_health.Controllers.HealthEnfermerosMovil.authController
             // Verificar si el usuario existe y tiene el rol de "Enfermero"
             if (usuario != null && usuario.Rol == "Enfermero")
             {
-                // Iniciar sesión correctamente
-                return Ok(new { message = "Inicio de sesión exitoso", usuario = usuario.IdUsuario });
+                var enfermero = _context.Enfermeros
+                    .FirstOrDefault(p => p.IdUsuario == usuario.IdUsuario);
+                if (enfermero != null) {
+                    // Iniciar sesión correctamente
+                    return Ok(new { message = "Inicio de sesión exitoso", idEnfermero = enfermero.IdEnfermero });
+                }
+                
             }
 
             // Usuario no encontrado o no es enfermero
